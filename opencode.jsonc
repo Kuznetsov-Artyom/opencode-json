@@ -18,9 +18,12 @@
             "tools": true,
             "input": ["text"],
             "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "medium", "high", "max"] }
+            "reasoning": { "supported": true, "toggle": true, "effort": ["low", "high", "max"] }
           },
           "settings": { "reasoningEffort": "max" },
+          "variants": [
+            { "id": "none", "body": { "thinking": { "type": "disabled" } } }
+          ],
           "cost": { "input": 0.99, "output": 0.99 }
         },
         "deepseek-v4.1-flash": {
@@ -31,9 +34,12 @@
             "tools": true,
             "input": ["text", "image"],
             "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "medium", "high", "max"] }
+            "reasoning": { "supported": true, "toggle": true, "effort": ["low", "high", "max"] }
           },
           "settings": { "reasoningEffort": "max" },
+          "variants": [
+            { "id": "none", "body": { "thinking": { "type": "disabled" } } }
+          ],
           "cost": { "input": 0.15, "output": 0.15 }
         },
         "glm-5.3": {
@@ -68,9 +74,9 @@
             "tools": true,
             "input": ["text", "image"],
             "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "medium", "high", "max"] }
+            "reasoning": { "supported": true, "toggle": true, "effort": ["none", "high"] }
           },
-          "settings": { "reasoningEffort": "max" },
+          "settings": { "reasoningEffort": "high" },
           "cost": { "input": 0.7, "output": 0.7 }
         },
         "hy4-flash": {
@@ -80,9 +86,9 @@
             "tools": true,
             "input": ["text", "image"],
             "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "medium", "high", "max"] }
+            "reasoning": { "supported": true, "toggle": true, "effort": ["none", "high"] }
           },
-          "settings": { "reasoningEffort": "max" },
+          "settings": { "reasoningEffort": "high" },
           "cost": { "input": 0.06, "output": 0.06 }
         },
         "kimi-k3": {
@@ -117,9 +123,11 @@
             "tools": true,
             "input": ["text"],
             "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "medium", "high", "max"] }
+            "reasoning": { "supported": true, "toggle": true }
           },
-          "settings": { "reasoningEffort": "max" },
+          "variants": [
+            { "id": "none", "body": { "thinking": { "type": "disabled" } } }
+          ],
           "cost": { "input": 1.47, "output": 1.47 }
         },
         "MiniMax-M3.1-Flash": {
@@ -129,7 +137,7 @@
             "tools": true,
             "input": ["text", "image", "video"],
             "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "medium", "high", "max"] }
+            "reasoning": { "supported": true, "effort": ["low", "medium", "high", "xhigh", "max"] }
           },
           "settings": { "reasoningEffort": "max" },
           "cost": { "input": 0.24, "output": 0.24 }
@@ -141,9 +149,12 @@
             "tools": true,
             "input": ["text", "image", "video", "pdf"],
             "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "high", "xhigh"] }
+            "reasoning": { "supported": true, "toggle": true, "effort": ["low", "medium", "xhigh"] }
           },
           "settings": { "reasoningEffort": "xhigh" },
+          "variants": [
+            { "id": "none", "body": { "enable_thinking": false } }
+          ],
           "cost": { "input": 2.84, "output": 2.84 }
         },
         "qwen4-max": {
@@ -153,9 +164,12 @@
             "tools": true,
             "input": ["text"],
             "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "high", "xhigh"] }
+            "reasoning": { "supported": true, "toggle": true, "effort": ["low", "high", "xhigh"] }
           },
           "settings": { "reasoningEffort": "xhigh" },
+          "variants": [
+            { "id": "none", "body": { "enable_thinking": false } }
+          ],
           "cost": { "input": 1.86, "output": 1.86 }
         }
       }
