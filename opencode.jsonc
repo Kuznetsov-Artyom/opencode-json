@@ -1,11 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  // Цены и наличие моделей сверены с GET /v1/models гейтвея 2026-11-21.
-  // Гейтвей публикует единый credit, поэтому cost.input = cost.output = credit (допущение).
-  // Cache-цены не заданы — гейтвей их не публикует.
-  // Лимиты и модальности API не отдаёт — они взяты из доков вендоров.
   "default_agent": "plan",
-  "model": "gateway/deepseek-v4.1-flash",
+  "model": "gateway/kimi-k3.1-pro",
   "providers": {
     "gateway": {
       "name": "AI",
@@ -18,181 +14,453 @@
         "deepseek-v4-pro": {
           "name": "DeepSeek V4 Pro",
           "family": "deepseek",
-          "limit": { "context": 1000000, "output": 262144 },
+          "limit": {
+            "context": 1000000,
+            "output": 262144
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "toggle": true, "effort": ["low", "high", "max"] }
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "toggle": true,
+              "effort": [
+                "low",
+                "high",
+                "max"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "max" },
+          "settings": {
+            "reasoningEffort": "max"
+          },
           "variants": [
-            { "id": "none", "body": { "thinking": { "type": "disabled" } } }
+            {
+              "id": "none",
+              "body": {
+                "thinking": {
+                  "type": "disabled"
+                }
+              }
+            }
           ],
-          "cost": { "input": 0.99, "output": 0.99 }
+          "cost": {
+            "input": 0.99,
+            "output": 0.99
+          }
         },
         "deepseek-v4.1-flash": {
-          // «Голого» deepseek-v4.1-flash на гейтвее нет — только вендорные ID.
           "modelID": "volcengine/deepseek-v4.1-flash",
           "name": "DeepSeek V4.1 Flash",
           "family": "deepseek",
-          "limit": { "context": 1000000, "output": 393216 },
+          "limit": {
+            "context": 1000000,
+            "output": 393216
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text", "image"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "toggle": true, "effort": ["low", "high", "max"] }
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "toggle": true,
+              "effort": [
+                "low",
+                "high",
+                "max"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "max" },
+          "settings": {
+            "reasoningEffort": "max"
+          },
           "variants": [
-            { "id": "none", "body": { "thinking": { "type": "disabled" } } }
+            {
+              "id": "none",
+              "body": {
+                "thinking": {
+                  "type": "disabled"
+                }
+              }
+            }
           ],
-          "cost": { "input": 0.15, "output": 0.15 }
+          "cost": {
+            "input": 0.15,
+            "output": 0.15
+          }
         },
         "glm-5.3": {
-          // «Голого» glm-5.3 на гейтвее нет. Эндпоинт baidu оставлен осознанно (volcengine дешевле).
-          "modelID": "baidu/glm-5.3",
+          "modelID": "volcengine/glm-5.3",
           "name": "GLM-5.3",
           "family": "glm",
-          "limit": { "context": 1000000, "output": 131072 },
+          "limit": {
+            "context": 1000000,
+            "output": 131072
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "high", "max"] }
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "effort": [
+                "low",
+                "high",
+                "max"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "max" },
-          "cost": { "input": 1.7, "output": 1.7 }
+          "settings": {
+            "reasoningEffort": "max"
+          },
+          "cost": {
+            "input": 1.52,
+            "output": 1.52
+          }
         },
         "glm-5.3-flash": {
           "name": "GLM-5.3 Flash",
           "family": "glm",
-          "limit": { "context": 1000000, "output": 131072 },
+          "limit": {
+            "context": 1000000,
+            "output": 131072
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text", "image"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "high", "max"] }
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "effort": [
+                "low",
+                "high",
+                "max"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "max" },
-          "cost": { "input": 0.22, "output": 0.22 }
+          "settings": {
+            "reasoningEffort": "max"
+          },
+          "cost": {
+            "input": 0.22,
+            "output": 0.22
+          }
         },
         "hy4": {
           "name": "Hy4",
           "family": "hy",
-          "limit": { "context": 1048576, "output": 65536 },
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text", "image"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "toggle": true, "effort": ["none", "high"] }
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "toggle": true,
+              "effort": [
+                "none",
+                "high"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "high" },
-          "cost": { "input": 0.7, "output": 0.7 }
+          "settings": {
+            "reasoningEffort": "high"
+          },
+          "cost": {
+            "input": 0.7,
+            "output": 0.7
+          }
         },
         "hy4-flash": {
           "name": "Hy4 Flash",
           "family": "hy",
-          "limit": { "context": 1048576, "output": 65536 },
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text", "image"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "toggle": true, "effort": ["none", "high"] }
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "toggle": true,
+              "effort": [
+                "none",
+                "high"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "high" },
-          "cost": { "input": 0.06, "output": 0.06 }
+          "settings": {
+            "reasoningEffort": "high"
+          },
+          "cost": {
+            "input": 0.06,
+            "output": 0.06
+          }
         },
         "kimi-k3": {
           "name": "Kimi K3",
           "family": "kimi",
-          "limit": { "context": 1048576, "output": 1048576 },
+          "limit": {
+            "context": 1048576,
+            "output": 1048576
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text", "image", "video"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "high", "max"] }
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "effort": [
+                "low",
+                "high",
+                "max"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "max" },
-          "cost": { "input": 4.51, "output": 4.51 }
+          "settings": {
+            "reasoningEffort": "max"
+          },
+          "cost": {
+            "input": 4.51,
+            "output": 4.51
+          }
         },
         "kimi-k3.1-pro": {
-          // «Голого» kimi-k3.1-pro на гейтвее нет — только вендорные ID.
           "modelID": "baidu/kimi-k3.1-pro",
           "name": "Kimi K3.1 Pro",
           "family": "kimi",
-          "limit": { "context": 1048576, "output": 1048576 },
+          "limit": {
+            "context": 1048576,
+            "output": 1048576
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text", "image", "video"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "high", "max"] }
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "effort": [
+                "low",
+                "high",
+                "max"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "max" },
-          "cost": { "input": 2.34, "output": 2.34 }
+          "settings": {
+            "reasoningEffort": "max"
+          },
+          "cost": {
+            "input": 2.34,
+            "output": 2.34
+          }
         },
-        // Ключи MiniMax-* с заглавных букв: ID регистрозависимы и должны совпадать с гейтвеем.
         "MiniMax-M3": {
           "name": "MiniMax-M3",
           "family": "minimax",
-          "limit": { "context": 1000000, "output": 131072 },
+          "limit": {
+            "context": 1000000,
+            "output": 131072
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "toggle": true }
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "toggle": true
+            }
           },
           "variants": [
-            { "id": "none", "body": { "thinking": { "type": "disabled" } } }
+            {
+              "id": "none",
+              "body": {
+                "thinking": {
+                  "type": "disabled"
+                }
+              }
+            }
           ],
-          "cost": { "input": 1.47, "output": 1.47 }
+          "cost": {
+            "input": 1.47,
+            "output": 1.47
+          }
         },
         "MiniMax-M3.1-Flash": {
           "name": "MiniMax M3.1 Flash",
           "family": "minimax",
-          "limit": { "context": 1048576, "output": 524288 },
+          "limit": {
+            "context": 1048576,
+            "output": 524288
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text", "image", "video"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "effort": ["low", "medium", "high", "xhigh", "max"] }
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "effort": [
+                "low",
+                "medium",
+                "high",
+                "xhigh",
+                "max"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "max" },
-          "cost": { "input": 0.24, "output": 0.24 }
+          "settings": {
+            "reasoningEffort": "max"
+          },
+          "cost": {
+            "input": 0.24,
+            "output": 0.24
+          }
         },
         "qwen3.8-max": {
           "name": "Qwen3.8-Max",
           "family": "qwen",
-          "limit": { "context": 1000000, "output": 131072 },
+          "limit": {
+            "context": 1000000,
+            "output": 131072
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text", "image", "video", "pdf"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "toggle": true, "effort": ["low", "medium", "xhigh"] }
+            "input": [
+              "text",
+              "image",
+              "video",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "toggle": true,
+              "effort": [
+                "low",
+                "medium",
+                "xhigh"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "xhigh" },
+          "settings": {
+            "reasoningEffort": "xhigh"
+          },
           "variants": [
-            // При enable_thinking=false гейтвей требует reasoning_effort="none" (иначе 400).
-            { "id": "none", "settings": { "reasoningEffort": "none" }, "body": { "enable_thinking": false } }
+            {
+              "id": "none",
+              "settings": {
+                "reasoningEffort": "none"
+              },
+              "body": {
+                "enable_thinking": false
+              }
+            }
           ],
-          "cost": { "input": 2.84, "output": 2.84 }
+          "cost": {
+            "input": 2.84,
+            "output": 2.84
+          }
         },
         "qwen4-max": {
           "name": "Qwen4-Max",
           "family": "qwen",
-          "limit": { "context": 1000000, "output": 262144 },
+          "limit": {
+            "context": 1000000,
+            "output": 262144
+          },
           "capabilities": {
             "tools": true,
-            "input": ["text"],
-            "output": ["text"],
-            "reasoning": { "supported": true, "toggle": true, "effort": ["low", "high", "xhigh"] }
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": true,
+              "toggle": true,
+              "effort": [
+                "low",
+                "high",
+                "xhigh"
+              ]
+            }
           },
-          "settings": { "reasoningEffort": "xhigh" },
+          "settings": {
+            "reasoningEffort": "xhigh"
+          },
           "variants": [
-            // При enable_thinking=false гейтвей требует reasoning_effort="none" (иначе 400).
-            { "id": "none", "settings": { "reasoningEffort": "none" }, "body": { "enable_thinking": false } }
+            {
+              "id": "none",
+              "settings": {
+                "reasoningEffort": "none"
+              },
+              "body": {
+                "enable_thinking": false
+              }
+            }
           ],
-          "cost": { "input": 1.86, "output": 1.86 }
+          "cost": {
+            "input": 1.86,
+            "output": 1.86
+          }
         }
       }
     }
